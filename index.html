@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard ThingSpeak en Tiempo Real</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Dashboard ThingSpeak en Tiempo Real</h1>
+      <p>Conecta tu canal y visualiza las variables actualizándose automáticamente.</p>
+    </header>
+
+    <section class="controls card">
+      <h2>Configuración</h2>
+      <form id="config-form">
+        <label>
+          Channel ID o URL del canal
+          <input id="channel-id" name="channelId" type="text" placeholder="Ej: 3269359 o https://thingspeak.mathworks.com/channels/3269359" value="3269359" required />
+        </label>
+
+        <label>
+          Read API Key (opcional para canales públicos)
+          <input id="read-key" name="readKey" type="text" placeholder="XXXXXXXXXXXXXXXX" />
+        </label>
+
+        <label>
+          Muestras a cargar
+          <input id="results" name="results" type="number" min="5" max="8000" value="40" />
+        </label>
+
+        <label>
+          Intervalo de actualización (segundos)
+          <input id="refresh-interval" name="refreshInterval" type="number" min="5" value="15" />
+        </label>
+
+        <button type="submit">Conectar</button>
+      </form>
+      <p id="status" class="status">Canal por defecto cargado: 3269359.</p>
+    </section>
+
+    <section id="metrics" class="grid"></section>
+
+    <section class="card">
+      <h2>Histórico reciente</h2>
+      <div id="charts" class="charts"></div>
+    </section>
+  </main>
+</body>
+</html>
